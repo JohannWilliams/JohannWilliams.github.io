@@ -26,7 +26,7 @@ $(document).ready(function () {
     /**
      * create the map with a preset location and orientation.
      */
-    mapboxgl.accessToken = MAPBOX_KEY;
+    mapboxgl.accessToken = process.env.MAPBOX_KEY;
     let map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/streets-v12', // style URL
@@ -209,7 +209,7 @@ $(document).ready(function () {
      * a BS Card for displaying that information.
      */
     function getWeatherData(){
-        $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${mapCenterLoc[1]}&lon=${mapCenterLoc[0]}&units=${currentUnits}&appid=${WEATHER_MAP_KEY}`).done(function(data){
+        $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${mapCenterLoc[1]}&lon=${mapCenterLoc[0]}&units=${currentUnits}&appid=${process.env.WEATHER_MAP_KEY}`).done(function(data){
             currentLocWeatherResults = data;
             createBSCardForLocationWeather(currentLocWeatherResults);
             createBSFiveDayForecastCards((currentLocWeatherResults));
